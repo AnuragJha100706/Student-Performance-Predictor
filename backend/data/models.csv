@@ -1,0 +1,213 @@
+model_id,algorithm,hyperparams,metrics,filepath,timestamp,rules,feature_importance
+Naive_Bayes_20251125171344,Naive Bayes,{},"{""accuracy"": 0.6556962025316456, ""precision"": 0.7324054295957365, ""recall"": 0.7773584905660378, ""roc_auc"": 0.6272859216255442}",Naive_Bayes_20251125171344.joblib,2025-11-25T17:13:44.905777,,{}
+SVM_20251125174419,SVM,{},"{""accuracy"": 0.660759493670886, ""precision"": 0.6674439262713746, ""recall"": 0.9849056603773585, ""roc_auc"": 0.6841799709724239}",SVM_20251125174419.joblib,2025-11-25T17:44:19.333723,,{}
+Decision_Tree_20251125180600,Decision Tree,"{""max_depth"": 150}","{""accuracy"": 0.610126582278481, ""precision"": 0.731847764572722, ""recall"": 0.6716981132075471, ""roc_auc"": 0.5781567489114658}",Decision_Tree_20251125180600.joblib,2025-11-25T18:06:00.820219,"|--- num__failures <= 0.50
+|   |--- cat__schoolsup_no <= 0.50
+|   |   |--- num__studytime <= 1.50
+|   |   |   |--- cat__reason_other <= 0.50
+|   |   |   |   |--- class: 1
+|   |   |   |--- cat__reason_other >  0.50
+|   |   |   |   |--- class: 0
+|   |   |--- num__studytime >  1.50
+|   |   |   |--- cat__reason_course <= 0.50
+|   |   |   |   |--- num__famrel <= 4.50
+|   |   |   |   |   |--- num__absences <= 1.00
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- num__absences >  1.00
+|   |   |   |   |   |   |--- num__health <= 2.50
+|   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |--- num__health >  2.50
+|   |   |   |   |   |   |   |--- num__absences <= 4.00
+|   |   |   |   |   |   |   |   |--- cat__Mjob_services <= 0.50
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- cat__Mjob_services >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- num__absences >  4.00
+|   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |--- num__famrel >  4.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |--- cat__reason_course >  0.50
+|   |   |   |   |--- cat__Mjob_services <= 0.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- cat__Mjob_services >  0.50
+|   |   |   |   |   |--- cat__romantic_yes <= 0.50
+|   |   |   |   |   |   |--- cat__activities_no <= 0.50
+|   |   |   |   |   |   |   |--- num__Medu <= 2.50
+|   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- num__Medu >  2.50
+|   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |--- cat__activities_no >  0.50
+|   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- cat__romantic_yes >  0.50
+|   |   |   |   |   |   |--- class: 1
+|   |--- cat__schoolsup_no >  0.50
+|   |   |--- num__absences <= 26.50
+|   |   |   |--- cat__guardian_other <= 0.50
+|   |   |   |   |--- num__absences <= 0.50
+|   |   |   |   |   |--- num__goout <= 4.50
+|   |   |   |   |   |   |--- cat__internet_yes <= 0.50
+|   |   |   |   |   |   |   |--- num__Walc <= 1.50
+|   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- num__Walc >  1.50
+|   |   |   |   |   |   |   |   |--- num__age <= 16.50
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- num__age >  16.50
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |--- cat__internet_yes >  0.50
+|   |   |   |   |   |   |   |--- cat__sex_M <= 0.50
+|   |   |   |   |   |   |   |   |--- num__Medu <= 3.50
+|   |   |   |   |   |   |   |   |   |--- cat__guardian_mother <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- num__goout <= 1.50
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- num__goout >  1.50
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- cat__guardian_mother >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- num__freetime <= 2.50
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |   |--- num__freetime >  2.50
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |--- num__Medu >  3.50
+|   |   |   |   |   |   |   |   |   |--- num__age <= 15.50
+|   |   |   |   |   |   |   |   |   |   |--- num__goout <= 2.50
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |   |--- num__goout >  2.50
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- num__age >  15.50
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- cat__sex_M >  0.50
+|   |   |   |   |   |   |   |   |--- cat__higher_no <= 0.50
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- cat__higher_no >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- num__goout >  4.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |--- num__absences >  0.50
+|   |   |   |   |   |--- num__absences <= 17.50
+|   |   |   |   |   |   |--- cat__Mjob_services <= 0.50
+|   |   |   |   |   |   |   |--- num__health <= 2.50
+|   |   |   |   |   |   |   |   |--- num__absences <= 13.50
+|   |   |   |   |   |   |   |   |   |--- cat__internet_no <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- cat__internet_no >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- cat__famsize_LE3 <= 0.50
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |   |--- cat__famsize_LE3 >  0.50
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- num__absences >  13.50
+|   |   |   |   |   |   |   |   |   |--- cat__paid_yes <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- cat__paid_yes >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- num__health >  2.50
+|   |   |   |   |   |   |   |   |--- num__absences <= 2.50
+|   |   |   |   |   |   |   |   |   |--- num__goout <= 4.50
+|   |   |   |   |   |   |   |   |   |   |--- cat__nursery_no <= 0.50
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |   |--- cat__nursery_no >  0.50
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |   |--- num__goout >  4.50
+|   |   |   |   |   |   |   |   |   |   |--- cat__paid_yes <= 0.50
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- cat__paid_yes >  0.50
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- num__absences >  2.50
+|   |   |   |   |   |   |   |   |   |--- num__Walc <= 4.50
+|   |   |   |   |   |   |   |   |   |   |--- cat__Fjob_teacher <= 0.50
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 9
+|   |   |   |   |   |   |   |   |   |   |--- cat__Fjob_teacher >  0.50
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- num__Walc >  4.50
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |--- cat__Mjob_services >  0.50
+|   |   |   |   |   |   |   |--- num__age <= 15.50
+|   |   |   |   |   |   |   |   |--- cat__activities_no <= 0.50
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- cat__activities_no >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- num__age >  15.50
+|   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- num__absences >  17.50
+|   |   |   |   |   |   |--- cat__romantic_yes <= 0.50
+|   |   |   |   |   |   |   |--- cat__reason_course <= 0.50
+|   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- cat__reason_course >  0.50
+|   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |--- cat__romantic_yes >  0.50
+|   |   |   |   |   |   |   |--- class: 1
+|   |   |   |--- cat__guardian_other >  0.50
+|   |   |   |   |--- cat__paid_no <= 0.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- cat__paid_no >  0.50
+|   |   |   |   |   |--- num__freetime <= 3.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- num__freetime >  3.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |--- num__absences >  26.50
+|   |   |   |--- class: 0
+|--- num__failures >  0.50
+|   |--- num__absences <= 1.00
+|   |   |--- cat__schoolsup_yes <= 0.50
+|   |   |   |--- num__freetime <= 4.50
+|   |   |   |   |--- cat__famsize_GT3 <= 0.50
+|   |   |   |   |   |--- cat__activities_no <= 0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- cat__activities_no >  0.50
+|   |   |   |   |   |   |--- num__Dalc <= 1.50
+|   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |--- num__Dalc >  1.50
+|   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |--- cat__famsize_GT3 >  0.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |--- num__freetime >  4.50
+|   |   |   |   |--- cat__higher_yes <= 0.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- cat__higher_yes >  0.50
+|   |   |   |   |   |--- class: 1
+|   |   |--- cat__schoolsup_yes >  0.50
+|   |   |   |--- class: 1
+|   |--- num__absences >  1.00
+|   |   |--- num__goout <= 2.50
+|   |   |   |--- num__famrel <= 3.50
+|   |   |   |   |--- cat__schoolsup_yes <= 0.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- cat__schoolsup_yes >  0.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |--- num__famrel >  3.50
+|   |   |   |   |--- class: 1
+|   |   |--- num__goout >  2.50
+|   |   |   |--- num__failures <= 1.50
+|   |   |   |   |--- cat__Pstatus_A <= 0.50
+|   |   |   |   |   |--- num__health <= 3.50
+|   |   |   |   |   |   |--- cat__school_GP <= 0.50
+|   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |--- cat__school_GP >  0.50
+|   |   |   |   |   |   |   |--- cat__reason_other <= 0.50
+|   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- cat__reason_other >  0.50
+|   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- num__health >  3.50
+|   |   |   |   |   |   |--- num__absences <= 12.50
+|   |   |   |   |   |   |   |--- num__freetime <= 3.50
+|   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- num__freetime >  3.50
+|   |   |   |   |   |   |   |   |--- num__Medu <= 1.50
+|   |   |   |   |   |   |   |   |   |--- cat__internet_yes <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- cat__internet_yes >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- num__Medu >  1.50
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |--- num__absences >  12.50
+|   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |--- cat__Pstatus_A >  0.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |--- num__failures >  1.50
+|   |   |   |   |--- num__Dalc <= 1.50
+|   |   |   |   |   |--- cat__sex_F <= 0.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- cat__sex_F >  0.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |--- num__Dalc >  1.50
+|   |   |   |   |   |--- class: 0
+","{""num__absences"": 0.12942853149279113, ""num__failures"": 0.11906583870055, ""num__goout"": 0.08609637722918898, ""num__freetime"": 0.052783145575598406, ""num__Walc"": 0.03510399032265038, ""cat__reason_course"": 0.032138443824384175, ""cat__reason_other"": 0.03033911581081393, ""cat__internet_yes"": 0.030257363350790004, ""num__famrel"": 0.0289923284262907, ""num__health"": 0.02899005334147665, ""num__Medu"": 0.027681940700808618, ""num__Dalc"": 0.026344253231045667, ""cat__romantic_yes"": 0.02618045476536043, ""cat__Mjob_services"": 0.023256754344434753, ""cat__schoolsup_yes"": 0.022296751144356364, ""cat__guardian_mother"": 0.02149854862119013, ""cat__schoolsup_no"": 0.02104328523862384, ""num__Fedu"": 0.019382818439422217, ""cat__Mjob_teacher"": 0.019109820996613448, ""cat__famsize_LE3"": 0.018623136366242334, ""cat__paid_no"": 0.018345428156748913, ""num__age"": 0.018154329946782774, ""cat__guardian_other"": 0.017937289711155227, ""cat__sex_M"": 0.016344816789126002, ""cat__activities_no"": 0.015765602322206095, ""num__studytime"": 0.01529196643621477, ""cat__paid_yes"": 0.015287856797290758, ""cat__school_GP"": 0.01310387725482065, ""cat__nursery_no"": 0.012397773058150416, ""cat__higher_yes"": 0.01146589259796807, ""cat__higher_no"": 0.011041229909154434, ""cat__Pstatus_A"": 0.010264559023379895, ""cat__reason_reputation"": 0.008599419448476052, ""cat__sex_F"": 0.007643928398645379, ""cat__Fjob_teacher"": 0.005830114880322752, ""cat__internet_no"": 0.0025479761328817967, ""cat__famsize_GT3"": 0.0013649872140438207, ""num__traveltime"": 0.0, ""cat__school_MS"": 0.0, ""cat__address_R"": 0.0, ""cat__address_U"": 0.0, ""cat__Pstatus_T"": 0.0, ""cat__Mjob_at_home"": 0.0, ""cat__Mjob_health"": 0.0, ""cat__Mjob_other"": 0.0, ""cat__Fjob_at_home"": 0.0, ""cat__Fjob_health"": 0.0, ""cat__Fjob_other"": 0.0, ""cat__Fjob_services"": 0.0, ""cat__reason_home"": 0.0, ""cat__guardian_father"": 0.0, ""cat__famsup_no"": 0.0, ""cat__famsup_yes"": 0.0, ""cat__activities_yes"": 0.0, ""cat__nursery_yes"": 0.0, ""cat__romantic_no"": 0.0}"
+Logistic_Regression_20251129100611,Logistic Regression,{},"{""accuracy"": 0.6860759493670886, ""precision"": 0.7340079583933281, ""recall"": 0.8415094339622643, ""roc_auc"": 0.6534107402031931}",Logistic_Regression_20251129100611.joblib,2025-11-29T10:06:11.529466,,"{""num__failures"": -0.8508167123102228, ""cat__Mjob_teacher"": -0.6598572123434032, ""num__goout"": -0.5100526646419717, ""cat__Mjob_health"": 0.42107673678001045, ""cat__Fjob_teacher"": 0.4206160941041238, ""cat__schoolsup_no"": 0.4148422254971735, ""cat__schoolsup_yes"": -0.4140384412616391, ""cat__Mjob_services"": 0.4048063127112911, ""cat__reason_course"": -0.32578679343661066, ""cat__famsup_no"": 0.2859522676643039, ""cat__famsup_yes"": -0.28514848342880206, ""cat__higher_yes"": 0.2833146299493982, ""cat__higher_no"": -0.2825108457138664, ""cat__Mjob_other"": -0.274172196004493, ""num__age"": -0.2548169976653068, ""num__Walc"": 0.23519825845792341, ""num__studytime"": 0.22427698169995455, ""cat__sex_M"": 0.21689704016426492, ""cat__sex_F"": -0.21609325592881798, ""cat__Fjob_services"": -0.21250998576992403, ""cat__Fjob_health"": -0.21234932986749483, ""cat__Pstatus_A"": 0.1985832712207413, ""cat__Pstatus_T"": -0.1977794869852222, ""cat__reason_other"": 0.18316163049548767, ""cat__nursery_no"": 0.1800294857160194, ""cat__nursery_yes"": -0.17922570148051134, ""num__famrel"": 0.17363002972221792, ""cat__internet_yes"": 0.15998569035072055, ""cat__internet_no"": -0.15918190611523458, ""cat__romantic_no"": 0.14201187632919784, ""cat__reason_reputation"": 0.14147806713121547, ""cat__romantic_yes"": -0.14120809209365798, ""num__freetime"": 0.1348862230731469, ""num__health"": -0.12647129748843056, ""cat__Mjob_at_home"": 0.10895014309207951, ""cat__paid_yes"": 0.10580282345530323, ""cat__paid_no"": -0.10499903921973969, ""cat__school_MS"": 0.10452574981200376, ""cat__school_GP"": -0.1037219655765115, ""num__Dalc"": -0.09699376469488184, ""cat__address_U"": 0.08963172197903613, ""cat__Fjob_other"": 0.08882869588912652, ""cat__address_R"": -0.08882793774356203, ""cat__famsize_LE3"": 0.087777904601697, ""num__Medu"": 0.08709860814107127, ""cat__famsize_GT3"": -0.08697412036618522, ""num__Fedu"": 0.08609705677080016, ""cat__Fjob_at_home"": -0.08378169012025424, ""cat__guardian_mother"": -0.07699511646347296, ""cat__activities_no"": 0.07043043608984463, ""cat__activities_yes"": -0.06962665185436591, ""cat__guardian_other"": 0.05456097541160235, ""num__traveltime"": 0.032661373885321435, ""cat__guardian_father"": 0.023237925287368566, ""num__absences"": -0.014400187861796327, ""cat__reason_home"": 0.001950880045441029}"
