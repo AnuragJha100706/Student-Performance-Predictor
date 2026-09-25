@@ -150,202 +150,341 @@ const Prediction = () => {
 
   return (
     <PageWrapper>
-      <h1 className="text-3xl font-bold mb-8 text-gray-900 dark:text-dark-text-primary">Make Predictions</h1>
+      {/* Header */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+        <div>
+          <motion.h1 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white flex items-center gap-3"
+          >
+            <span className="p-2 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-500 shadow-lg shadow-cyan-500/30">
+              <Activity className="w-6 h-6 text-white" />
+            </span>
+            Make Predictions
+          </motion.h1>
+          <p className="text-gray-500 dark:text-gray-400 mt-2 ml-14">AI-powered student performance analysis</p>
+        </div>
+      </div>
       
       {showOnboarding && (
         <motion.div 
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          exit={{ opacity: 0, height: 0 }}
-          className="mb-8 bg-primary/10 border-l-4 border-primary p-4 rounded-r shadow-sm flex justify-between items-start"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="mb-8 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-orange-500/10 dark:from-purple-500/20 dark:via-pink-500/20 dark:to-orange-500/20 border border-purple-200/50 dark:border-purple-500/30 p-6 rounded-2xl shadow-lg shadow-purple-500/5 flex justify-between items-start"
         >
           <div>
-              <h4 className="font-bold text-primary-dark dark:text-primary-light flex items-center gap-2">
-                <Info className="w-5 h-5" />
-                Welcome to the Advanced Prediction Engine!
+              <h4 className="font-bold text-purple-700 dark:text-purple-300 flex items-center gap-2 text-lg">
+                <div className="p-2 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500">
+                  <Info className="w-4 h-4 text-white" />
+                </div>
+                Welcome to the AI Prediction Engine! 🚀
               </h4>
-              <p className="text-sm text-primary dark:text-primary-light mt-2 ml-7">
-                  1. <strong>Fill Details:</strong> Enter student information across the Personal, Family, Academic, and Lifestyle tabs.<br/>
-                  2. <strong>Select Model:</strong> Choose a trained model from the dropdown.<br/>
-                  3. <strong>Analyze:</strong> Get a detailed report with "What-If" scenarios and actionable recommendations.
-              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 ml-10">
+                <div className="flex items-start gap-3">
+                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-purple-500 text-white text-sm font-bold">1</span>
+                  <div>
+                    <p className="font-semibold text-gray-700 dark:text-gray-300">Fill Details</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Enter student info across tabs</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-pink-500 text-white text-sm font-bold">2</span>
+                  <div>
+                    <p className="font-semibold text-gray-700 dark:text-gray-300">Select Model</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Choose a trained ML model</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="flex items-center justify-center w-6 h-6 rounded-full bg-orange-500 text-white text-sm font-bold">3</span>
+                  <div>
+                    <p className="font-semibold text-gray-700 dark:text-gray-300">Get Insights</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Receive detailed analysis</p>
+                  </div>
+                </div>
+              </div>
           </div>
-          <button onClick={() => setShowOnboarding(false)} className="text-primary-light hover:text-primary-dark dark:text-primary dark:hover:text-primary-light p-1">
-              <X className="w-5 h-5" />
+          <button onClick={() => setShowOnboarding(false)} className="p-2 rounded-lg hover:bg-purple-200/50 dark:hover:bg-purple-500/20 transition-colors">
+              <X className="w-5 h-5 text-purple-500" />
           </button>
         </motion.div>
       )}
 
-      <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-700 dark:text-dark-text-secondary mb-1">Select Model</label>
-        <select 
-          className="w-full max-w-md border-gray-300 dark:border-dark-lighter dark:bg-dark-bg dark:text-dark-text-primary rounded-md shadow-sm p-2 border"
-          value={selectedModel}
-          onChange={(e) => setSelectedModel(e.target.value)}
-        >
-          <option value="">-- Select Model --</option>
-          {Array.isArray(models) && models.map(m => <option key={m.model_id} value={m.model_id}>{m.algorithm} ({m.model_id})</option>)}
-        </select>
-      </div>
+      {/* Model Selection */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="mb-8"
+      >
+        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Select AI Model</label>
+        <div className="relative max-w-md">
+          <select 
+            className="w-full appearance-none border-2 border-gray-200 dark:border-gray-700 dark:bg-dark-card dark:text-white rounded-xl shadow-sm p-3 pl-4 pr-10 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 transition-all cursor-pointer font-medium"
+            value={selectedModel}
+            onChange={(e) => setSelectedModel(e.target.value)}
+          >
+            <option value="">-- Choose a trained model --</option>
+            {Array.isArray(models) && models.map(m => (
+              <option key={m.model_id} value={m.model_id}>
+                {m.algorithm} ({m.model_id})
+              </option>
+            ))}
+          </select>
+          <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+            <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
+      </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <Card>
-          <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-dark-text-primary">Single Prediction</h3>
-          <form onSubmit={handleSinglePredict} className="space-y-6">
-            
-            {/* Tabs Navigation */}
-            <div className="flex space-x-1 bg-gray-100 dark:bg-dark-bg p-1 rounded-lg overflow-x-auto">
-              {tabs.map((tab) => {
-                const Icon = tab.icon;
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 whitespace-nowrap ${
-                      activeTab === tab.id
-                        ? 'bg-white dark:bg-dark-card text-primary shadow-sm'
-                        : 'text-gray-500 dark:text-dark-text-secondary hover:text-gray-700 dark:hover:text-dark-text-primary hover:bg-gray-200 dark:hover:bg-dark-lighter'
-                    }`}
-                  >
-                    <Icon className="w-4 h-4 mr-2" />
-                    {tab.label}
-                  </button>
-                );
-              })}
-            </div>
+        {/* Single Prediction Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          <Card className="border-t-4 border-t-purple-500">
+            <h3 className="text-xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-3">
+              <span className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900/30">
+                <User className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+              </span>
+              Single Prediction
+            </h3>
+            <form onSubmit={handleSinglePredict} className="space-y-6">
+              
+              {/* Tabs Navigation - Enhanced */}
+              <div className="flex space-x-1 bg-gray-100 dark:bg-dark-bg p-1.5 rounded-xl overflow-x-auto">
+                {tabs.map((tab) => {
+                  const Icon = tab.icon;
+                  const isActive = activeTab === tab.id;
+                  return (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`relative flex items-center px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-300 whitespace-nowrap ${
+                        isActive
+                          ? 'bg-white dark:bg-dark-card text-purple-600 dark:text-purple-400 shadow-md'
+                          : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-gray-800/50'
+                      }`}
+                    >
+                      <Icon className={`w-4 h-4 mr-2 ${isActive ? 'text-purple-500' : ''}`} />
+                      {tab.label}
+                      {isActive && (
+                        <motion.div
+                          layoutId="activeTabIndicator"
+                          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
+                        />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
 
-            {/* Form Fields with Animation */}
-            <div className="min-h-[400px]">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTab}
-                  initial={{ opacity: 0, x: 10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -10 }}
-                  transition={{ duration: 0.2 }}
-                  className="grid grid-cols-1 md:grid-cols-2 gap-4"
-                >
-                  {tabs.find(t => t.id === activeTab).fields.map(field => {
-                    const meta = fieldMetadata[field] || {};
-                    return (
-                      <div key={field} className="relative group">
-                        <div className="flex items-center mb-1">
-                          <label className="block text-xs font-medium text-gray-500 dark:text-dark-text-secondary uppercase mr-1">{meta.label || field}</label>
-                          {meta.tooltip && (
-                            <div className="group relative">
-                              <Info className="w-3 h-3 text-gray-400 dark:text-dark-text-secondary cursor-help" />
-                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-dark-lighter text-white dark:text-dark-text-primary text-xs rounded p-1 w-32 hidden group-hover:block z-10 pointer-events-none">
-                                {meta.tooltip}
+              {/* Form Fields with Animation */}
+              <div className="min-h-[400px]">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeTab}
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                  >
+                    {tabs.find(t => t.id === activeTab).fields.map(field => {
+                      const meta = fieldMetadata[field] || {};
+                      return (
+                        <div key={field} className="relative group">
+                          <div className="flex items-center mb-2">
+                            <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mr-1">
+                              {meta.label || field}
+                            </label>
+                            {meta.tooltip && (
+                              <div className="group/tooltip relative">
+                                <Info className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500 cursor-help hover:text-purple-500 transition-colors" />
+                                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-gray-900 dark:bg-gray-700 text-white text-xs rounded-lg px-3 py-2 w-40 hidden group-hover/tooltip:block z-10 shadow-xl">
+                                  {meta.tooltip}
+                                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900 dark:border-t-gray-700"></div>
+                                </div>
                               </div>
+                            )}
+                          </div>
+                          
+                          {meta.type === 'select' ? (
+                            <select
+                              className="w-full border-2 border-gray-200 dark:border-gray-700 dark:bg-dark-card dark:text-white rounded-xl shadow-sm p-2.5 text-sm focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 transition-all cursor-pointer"
+                              onChange={(e) => setInputData({...inputData, [field]: e.target.value})}
+                              value={inputData[field] || ''}
+                              required
+                            >
+                              <option value="">Select...</option>
+                              {meta.options.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+                            </select>
+                          ) : meta.type === 'range' ? (
+                            <div className="flex items-center space-x-3 bg-gray-50 dark:bg-dark-bg p-3 rounded-xl border-2 border-gray-200 dark:border-gray-700">
+                              <input
+                                type="range"
+                                min={meta.min}
+                                max={meta.max}
+                                className="w-full accent-purple-500 h-2 rounded-full"
+                                onChange={(e) => setInputData({...inputData, [field]: e.target.value})}
+                                value={inputData[field] || Math.ceil((meta.max + meta.min) / 2)}
+                              />
+                              <span className="text-sm font-bold text-white bg-gradient-to-r from-purple-500 to-pink-500 w-8 h-8 flex items-center justify-center rounded-lg shadow">
+                                {inputData[field] || Math.ceil((meta.max + meta.min) / 2)}
+                              </span>
                             </div>
-                          )}
-                        </div>
-                        
-                        {meta.type === 'select' ? (
-                          <select
-                            className="w-full border-gray-300 dark:border-dark-lighter dark:bg-dark-bg dark:text-dark-text-primary rounded-md shadow-sm p-2 border text-sm focus:ring-primary focus:border-primary transition-colors"
-                            onChange={(e) => setInputData({...inputData, [field]: e.target.value})}
-                            value={inputData[field] || ''}
-                            required
-                          >
-                            <option value="">Select...</option>
-                            {meta.options.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-                          </select>
-                        ) : meta.type === 'range' ? (
-                          <div className="flex items-center space-x-2 bg-gray-50 dark:bg-dark-bg p-2 rounded-md border border-gray-200 dark:border-dark-lighter">
+                          ) : (
                             <input
-                              type="range"
+                              type={meta.type || 'text'}
                               min={meta.min}
                               max={meta.max}
-                              className="w-full accent-primary"
+                              className="w-full border-2 border-gray-200 dark:border-gray-700 dark:bg-dark-card dark:text-white rounded-xl shadow-sm p-2.5 text-sm focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 transition-all"
                               onChange={(e) => setInputData({...inputData, [field]: e.target.value})}
-                              value={inputData[field] || Math.ceil((meta.max + meta.min) / 2)}
+                              value={inputData[field] || ''}
+                              required
                             />
-                            <span className="text-sm font-bold text-primary w-6 text-center">{inputData[field] || Math.ceil((meta.max + meta.min) / 2)}</span>
-                          </div>
-                        ) : (
-                          <input
-                            type={meta.type || 'text'}
-                            min={meta.min}
-                            max={meta.max}
-                            className="w-full border-gray-300 dark:border-dark-lighter dark:bg-dark-bg dark:text-dark-text-primary rounded-md shadow-sm p-2 border text-sm focus:ring-primary focus:border-primary transition-colors"
-                            onChange={(e) => setInputData({...inputData, [field]: e.target.value})}
-                            value={inputData[field] || ''}
-                            required
-                          />
-                        )}
-                      </div>
-                    );
-                  })}
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            <div className="flex justify-between pt-4 border-t border-gray-100 dark:border-dark-lighter">
-               <div className="text-xs text-gray-400 dark:text-dark-text-secondary flex items-center">
-                  {Object.keys(inputData).length} / {Object.keys(fieldMetadata).length} fields filled
-               </div>
-               <Button type="submit" disabled={!selectedModel} className="bg-primary hover:bg-primary-dark text-white px-6">
-                 Run Prediction
-               </Button>
-            </div>
-          </form>
-          
-          {/* Prediction Result moved to bottom */}
-        </Card>
-
-        <Card>
-          <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-dark-text-primary">Batch Prediction</h3>
-          <div className="border-2 border-dashed border-gray-300 dark:border-dark-lighter rounded-lg p-8 text-center hover:border-primary transition-colors mb-4">
-            <input
-              type="file"
-              id="batch-upload"
-              className="hidden"
-              accept=".csv"
-              onChange={(e) => setBatchFile(e.target.files[0])}
-            />
-            <label htmlFor="batch-upload" className="cursor-pointer flex flex-col items-center">
-              <Upload className="w-10 h-10 text-gray-400 dark:text-dark-text-secondary mb-2" />
-              <span className="text-sm text-gray-600 dark:text-dark-text-secondary">{batchFile ? batchFile.name : 'Upload CSV for Batch Prediction'}</span>
-            </label>
-          </div>
-          <Button onClick={handleBatchPredict} className="w-full" disabled={!selectedModel || !batchFile}>Run Batch Prediction</Button>
-
-          {batchResults && (
-            <div className="mt-6">
-              <h4 className="font-medium mb-2 text-gray-900 dark:text-dark-text-primary">Results Preview</h4>
-              <div className="overflow-x-auto max-h-64">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-dark-lighter text-sm">
-                  <thead className="bg-gray-50 dark:bg-dark-lighter">
-                    <tr>
-                      <th className="px-4 py-2 text-gray-500 dark:text-dark-text-secondary">Prediction</th>
-                      <th className="px-4 py-2 text-gray-500 dark:text-dark-text-secondary">Probability</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200 dark:divide-dark-lighter">
-                    {batchResults.slice(0, 10).map((row, i) => (
-                      <tr key={i}>
-                        <td className="px-4 py-2 text-gray-900 dark:text-dark-text-primary">{row.prediction === 1 ? 'Pass' : 'Fail'}</td>
-                        <td className="px-4 py-2 text-gray-900 dark:text-dark-text-primary">{(row.probability * 100).toFixed(1)}%</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </motion.div>
+                </AnimatePresence>
               </div>
+
+              <div className="flex justify-between items-center pt-4 border-t border-gray-200 dark:border-gray-700">
+                 <div className="flex items-center gap-2">
+                    <div className="w-24 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-300"
+                        style={{ width: `${(Object.keys(inputData).length / Object.keys(fieldMetadata).length) * 100}%` }}
+                      ></div>
+                    </div>
+                    <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
+                      {Object.keys(inputData).length}/{Object.keys(fieldMetadata).length} fields
+                    </span>
+                 </div>
+                 <Button type="submit" disabled={!selectedModel}>
+                   <Activity className="w-4 h-4 mr-2" />
+                   Run Prediction
+                 </Button>
+              </div>
+            </form>
+          </Card>
+        </motion.div>
+
+        {/* Batch Prediction Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+        >
+          <Card className="border-t-4 border-t-cyan-500">
+            <h3 className="text-xl font-bold mb-6 text-gray-900 dark:text-white flex items-center gap-3">
+              <span className="p-2 rounded-lg bg-cyan-100 dark:bg-cyan-900/30">
+                <Upload className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
+              </span>
+              Batch Prediction
+            </h3>
+            <div className={`border-2 border-dashed rounded-2xl p-8 text-center transition-all duration-300 mb-6 ${
+              batchFile 
+                ? 'border-emerald-400 bg-emerald-50 dark:bg-emerald-900/20' 
+                : 'border-gray-300 dark:border-gray-600 hover:border-cyan-400 hover:bg-cyan-50/50 dark:hover:bg-cyan-900/10'
+            }`}>
+              <input
+                type="file"
+                id="batch-upload"
+                className="hidden"
+                accept=".csv"
+                onChange={(e) => setBatchFile(e.target.files[0])}
+              />
+              <label htmlFor="batch-upload" className="cursor-pointer flex flex-col items-center">
+                <div className={`p-4 rounded-2xl mb-4 ${batchFile ? 'bg-emerald-100 dark:bg-emerald-900/30' : 'bg-gray-100 dark:bg-gray-800'}`}>
+                  {batchFile ? (
+                    <CheckCircle className="w-10 h-10 text-emerald-500" />
+                  ) : (
+                    <Upload className="w-10 h-10 text-gray-400 dark:text-gray-500" />
+                  )}
+                </div>
+                <span className={`font-medium ${batchFile ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-600 dark:text-gray-400'}`}>
+                  {batchFile ? batchFile.name : 'Drop CSV file here or click to browse'}
+                </span>
+                <span className="text-xs text-gray-400 dark:text-gray-500 mt-2">
+                  Supports .csv files with student data
+                </span>
+              </label>
             </div>
-          )}
-        </Card>
+            <Button 
+              onClick={handleBatchPredict} 
+              className="w-full" 
+              variant="secondary"
+              disabled={!selectedModel || !batchFile}
+            >
+              <Activity className="w-4 h-4 mr-2" />
+              Run Batch Prediction
+            </Button>
+
+            {batchResults && (
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-6"
+              >
+                <h4 className="font-semibold mb-3 text-gray-900 dark:text-white flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-emerald-500" />
+                  Results Preview
+                </h4>
+                <div className="overflow-x-auto max-h-64 rounded-xl border border-gray-200 dark:border-gray-700">
+                  <table className="min-w-full text-sm">
+                    <thead className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-800/50 sticky top-0">
+                      <tr>
+                        <th className="px-4 py-3 text-left font-semibold text-gray-600 dark:text-gray-300">Prediction</th>
+                        <th className="px-4 py-3 text-left font-semibold text-gray-600 dark:text-gray-300">Probability</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100 dark:divide-gray-700/50">
+                      {batchResults.slice(0, 10).map((row, i) => (
+                        <tr key={i} className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+                          <td className="px-4 py-3">
+                            <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold ${
+                              row.prediction === 1 
+                                ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300' 
+                                : 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300'
+                            }`}>
+                              {row.prediction === 1 ? '✓ Pass' : '✗ Fail'}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-medium">
+                            {(row.probability * 100).toFixed(1)}%
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </motion.div>
+            )}
+          </Card>
+        </motion.div>
       </div>
 
       {prediction && (
-        <div className="mt-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mt-12"
+        >
             <PredictionReport 
                 prediction={prediction} 
                 model={models.find(m => m.model_id === selectedModel)} 
                 inputData={inputData} 
             />
-        </div>
+        </motion.div>
       )}
     </PageWrapper>
   );
