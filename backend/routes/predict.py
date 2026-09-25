@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 import os
 import pandas as pd
+import numpy as np
 from datetime import datetime
 from utils.ml_utils import load_model, predict_single
 from utils.csv_utils import read_csv, append_row, init_csv, write_csv
@@ -13,6 +14,7 @@ PREDICTIONS_CSV = os.path.join(Config.DATA_FOLDER, 'predictions.csv')
 # Columns: timestamp, model_id, input_data (json), prediction, probability
 init_csv(PREDICTIONS_CSV, ['timestamp', 'model_id', 'input_data', 'prediction', 'probability'])
 
+@predict_bp.route('', methods=['POST'])
 @predict_bp.route('/', methods=['POST'])
 def predict():
     data = request.get_json()
@@ -74,6 +76,13 @@ def batch_predict():
         model = load_model(model_filename)
         # Use sep=None to auto-detect separator
         df = pd.read_csv(file, sep=None, engine='python')
+        
+        # Ensure all expected columns exist in df
+        if hasattr(model, 'feature_names_in_'):
+            for col in model.feature_names_in_:
+                if col not in df.columns:
+                    df[col] = np.nan
+        df = df.replace('', np.nan)
         
         # Predict
         # Ensure columns match. Pipeline handles it usually if names match.

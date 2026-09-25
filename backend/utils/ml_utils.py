@@ -2,6 +2,7 @@ import joblib
 import os
 import json
 import pandas as pd
+import numpy as np
 from sklearn.tree import DecisionTreeClassifier, export_text
 from sklearn.naive_bayes import GaussianNB
 from sklearn.linear_model import LogisticRegression
@@ -115,8 +116,15 @@ def load_model(model_filename):
 def predict_single(model, input_data):
     # input_data is a dict
     df = pd.DataFrame([input_data])
-    # Ensure columns match what the pipeline expects (preprocessing handles missing cols if robust, but better to have them)
-    # The pipeline expects raw columns.
+    
+    # Ensure all expected columns exist in df
+    if hasattr(model, 'feature_names_in_'):
+        for col in model.feature_names_in_:
+            if col not in df.columns:
+                df[col] = np.nan
+                
+    # Replace empty strings with NaN so SimpleImputer handles them
+    df = df.replace('', np.nan)
     
     prediction = model.predict(df)[0]
     probability = model.predict_proba(df)[0].max() if hasattr(model, 'predict_proba') else 0.0
